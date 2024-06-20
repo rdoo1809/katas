@@ -28,46 +28,117 @@ function total(array $items): float
 {
     $length = count($items);
 
+    if ($length > 10) {
+        return priceForThreeBundles($items);
+    }
+
     if ($length <= 1) {
         $result = 8 * $length;
     } else {
-        $result = discounter($items, $length);
+        $result = priceForOneOrTwoBundles($items, $length);
+    }
+
+    //
+    return $result;
+}
+
+function priceForThreeBundles(array $items): float
+{
+    [$unique, $everythingElse] = splitArray($items);
+    [$anotherUnique, $remainder] = splitArray($everythingElse);
+
+    $discountedAmount = 0;
+    $discountedAmount += discounter($unique);
+    $discountedAmount += discounter($anotherUnique);
+    $discountedAmount += discounter($remainder);
+
+    return $discountedAmount;
+}
+
+function splitArray(array $items): array {
+    $unique = [];
+    $duplicates = [];
+    foreach ($items as $item) {
+        // is the item already in unique?
+        if (in_array($item, $unique)) {
+            // if so, put in $duplicate
+            $duplicates[] = $item;
+        } else {
+            $unique[] = $item;
+        }
+    }
+
+    return [$unique, $duplicates];
+}
+
+
+function priceForOneOrTwoBundles(array $items, int $length): float
+{
+    [$unique, $duplicates] = splitArray($items);
+    if (count($unique) === 5 && count($duplicates) === 3) // count($unique) != count($duplicates)) {
+        //only balance if needed
+    {
+        $balancedArrays = balancer($unique, $duplicates);
+        $unique = $balancedArrays['unique'];
+        $duplicates = $balancedArrays['duplicates'];
+    }
+
+
+    $discountedAmount = 0;
+
+    $discountedAmount += discounter($unique);
+    var_dump($discountedAmount);
+    $discountedAmount += discounter($duplicates);
+    var_dump('after 2', $discountedAmount);
+
+
+    return $discountedAmount;
+}
+
+function discounter(array $items): float
+{
+    var_dump($items);
+    $result = 0;
+    $length = count($items);
+
+    if ($length === 5) {
+        return (8 * 0.75) * 5;
+    }
+
+    if ($length === 4) {
+        return (8 * 0.80) * 4;
+    }
+
+    if ($length === 3) {
+        return (8 * 0.90) * 3;
+    }
+
+    if ($length === 2) {
+        return (8 * 0.95) * 2;
+    }
+
+    if ($length <= 1) {
+        $result = 8 * $length;
     }
 
     return $result;
 }
 
+function balancer ($unique, $duplicates){
 
-function discounter(array $items, int $length): float
-{
-    //storing sets of books - new arrays
-
-
-    // Find out how many unique books
-    $unique = array_unique($items);
-
-    $uniqueLength = count($unique);
-
-    if ($uniqueLength > 3) {
-        $discount = 0.05 * ($uniqueLength);
-    }
-    else {
-        $discount = 0.05 * ($uniqueLength-1);
+    foreach($unique as $u) {
+        if (!in_array($u, $duplicates) && count($unique) !== count($duplicates)) {
+            // take u out of $unique
+            // put u into $duplciates;
+            array_splice($unique, $u, 1);
+            var_dump('unique', $unique);
+            array_push($duplicates, $u);
+        }
     }
 
-    $discountedAmount = ($length * 8) * (1 - $discount);
-
-    // if($uniqueLength == $length){
-    //         if($uniqueLength === 2){
-    //             $discountedAmount = (($length - $uniqueLength) * 8) + (0.95 * ($uniqueLength * 8));
-    //         }
-
-    //             //if 3
-
-    //     } else {
-    //     return 16;
-    // }
-
-
-    return $discountedAmount;
+    return [
+        'unique' => $unique,
+        'duplicates' => $duplicates,
+    ];
 }
+
