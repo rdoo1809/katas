@@ -86,7 +86,8 @@ class TennisGame2 implements TennisGame
             $score = "{$this->playerOneResult}-{$this->playerTwoResult}";
         }
 
-        if ($this->playerTwoPoint > $this->playerOnePoint && $this->playerTwoPoint < 4) {
+        $isPlayerTwoWinning = $this->playerTwoPoint > $this->playerOnePoint && $this->playerTwoPoint < 4;
+        if ($isPlayerTwoWinning) {
             if ($this->playerTwoPoint == 2) {
                 $this->playerTwoResult = "Thirty";
             }
