@@ -118,6 +118,9 @@ class TennisGame2 implements TennisGame
      */
     public function playerHasPointsAndTheOtherDoesnt(string $playerName): bool
     {
+        if ($playerName === $this->playerOneName) {
+
         return $this->playerOnePoint > 0 && $this->playerTwoPoint == 0;
+        }
     }
 }
