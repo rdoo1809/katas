@@ -127,11 +127,11 @@ class TennisGame2 implements TennisGame
     }
 
 
-    public function wonPoint($player)
+    public function wonPoint($player) : void
     {
-        if ($player == "player1") {
+        if ($player == $this->playerOneName) {
             $this->playerOnePoint++;
-        } else {
+        } else if ($player == $this->playerTwoName) {
             $this->playerTwoPoint++;
         }
     }

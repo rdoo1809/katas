@@ -6,7 +6,7 @@ interface TennisGame
      * @param  $playerName
      * @return void
      */
-    public function wonPoint($playerName);
+    public function wonPoint($player);
 
     /**
      * @return string
