@@ -39,49 +39,21 @@ class TennisGame2 implements TennisGame
             $score = "Deuce";
         }
 
-        if ($playerOneHasPointsPlayerTwoDoesNot) {
+        if ($playerOneHasPointsPlayerTwoDoesNot ||$playerTwoHasPointsPlayerOneDoesNot) {
             $this->playerOneResult = $this->getScoreType($score, $this->playerOnePoint);
             $this->playerTwoResult = $this->getScoreType($score, $this->playerTwoPoint);
             $score = "{$this->playerOneResult}-{$this->playerTwoResult}";
         }
 
-        if ($playerTwoHasPointsPlayerOneDoesNot) {
-            $this->playerTwoResult = $this->getScoreType($score, $this->playerTwoPoint);
+
+        if ($isPlayerOneWinning || $isPlayerTwoWinning) {
             $this->playerOneResult = $this->getScoreType($score, $this->playerOnePoint);
+
+            $this->playerTwoResult = $this->getScoreType($score, $this->playerTwoPoint);
+
             $score = "{$this->playerOneResult}-{$this->playerTwoResult}";
         }
 
-        if ($isPlayerOneWinning) {
-            if ($this->playerOnePoint == 2) {
-                $this->playerOneResult = "Thirty";
-            }
-            if ($this->playerOnePoint == 3) {
-                $this->playerOneResult = "Forty";
-            }
-            if ($this->playerTwoPoint == 1) {
-                $this->playerTwoResult = "Fifteen";
-            }
-            if ($this->playerTwoPoint == 2) {
-                $this->playerTwoResult = "Thirty";
-            }
-            $score = "{$this->playerOneResult}-{$this->playerTwoResult}";
-        }
-
-        if ($isPlayerTwoWinning) {
-            if ($this->playerTwoPoint == 2) {
-                $this->playerTwoResult = "Thirty";
-            }
-            if ($this->playerTwoPoint == 3) {
-                $this->playerTwoResult = "Forty";
-            }
-            if ($this->playerOnePoint == 1) {
-                $this->playerOneResult = "Fifteen";
-            }
-            if ($this->playerOnePoint == 2) {
-                $this->playerOneResult = "Thirty";
-            }
-            $score = "{$this->playerOneResult}-{$this->playerTwoResult}";
-        }
 
         if ($isPlayerOneAdvantage) {
             $score = "Advantage player1";
