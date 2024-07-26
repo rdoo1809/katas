@@ -20,17 +20,25 @@ class TennisGame2 implements TennisGame
     {
         $score = "";
         $scoreIsTied = ($this->playerOnePoint == $this->playerTwoPoint) && $this->playerOnePoint < 4;
+        $scoreIsDeuce = $this->playerOnePoint == $this->playerTwoPoint && $this->playerOnePoint >= 3;
+        $playerOneHasPointsPlayerTwoDoesNot = $this->playerOnePoint > 0 && $this->playerTwoPoint == 0;
+        $playerTwoHasPointsPlayerOneDoesNot = $this->playerTwoPoint > 0 && $this->playerOnePoint == 0;
+        $isPlayerOneWinning = $this->playerOnePoint > $this->playerTwoPoint && $this->playerOnePoint < 4;
+        $isPlayerTwoWinning = $this->playerTwoPoint > $this->playerOnePoint && $this->playerTwoPoint < 4;
+        $isPlayerOneAdvantage = $this->playerOnePoint > $this->playerTwoPoint && $this->playerTwoPoint >= 3;
+        $isPlayerTwoAdvantage = $this->playerTwoPoint > $this->playerOnePoint && $this->playerOnePoint >= 3;
+        $isPlayerOneWin = $this->playerOnePoint >= 4 && $this->playerTwoPoint >= 0 && ($this->playerOnePoint - $this->playerTwoPoint) >= 2;
+        $isPlayerTwoWin = $this->playerTwoPoint >= 4 && $this->playerOnePoint >= 0 && ($this->playerTwoPoint - $this->playerOnePoint) >= 2;
+
         if ($scoreIsTied) {
             $score = $this->getScoreType($score, $this->playerOnePoint);
             $score .= "-All";
         }
 
-        $scoreIsDeuce = $this->playerOnePoint == $this->playerTwoPoint && $this->playerOnePoint >= 3;
         if ($scoreIsDeuce) {
             $score = "Deuce";
         }
 
-        $playerOneHasPointsPlayerTwoDoesNot = $this->playerOnePoint > 0 && $this->playerTwoPoint == 0;
         if ($playerOneHasPointsPlayerTwoDoesNot) {
             if ($this->playerOnePoint == 1) {
                 $this->playerOneResult = "Fifteen";
@@ -46,7 +54,6 @@ class TennisGame2 implements TennisGame
             $score = "{$this->playerOneResult}-{$this->playerTwoResult}";
         }
 
-        $playerTwoHasPointsPlayerOneDoesNot = $this->playerTwoPoint > 0 && $this->playerOnePoint == 0;
         if ($playerTwoHasPointsPlayerOneDoesNot) {
             if ($this->playerTwoPoint == 1) {
                 $this->playerTwoResult = "Fifteen";
@@ -61,7 +68,6 @@ class TennisGame2 implements TennisGame
             $score = "{$this->playerOneResult}-{$this->playerTwoResult}";
         }
 
-        $isPlayerOneWinning = $this->playerOnePoint > $this->playerTwoPoint && $this->playerOnePoint < 4;
         if ($isPlayerOneWinning) {
             if ($this->playerOnePoint == 2) {
                 $this->playerOneResult = "Thirty";
@@ -78,7 +84,6 @@ class TennisGame2 implements TennisGame
             $score = "{$this->playerOneResult}-{$this->playerTwoResult}";
         }
 
-        $isPlayerTwoWinning = $this->playerTwoPoint > $this->playerOnePoint && $this->playerTwoPoint < 4;
         if ($isPlayerTwoWinning) {
             if ($this->playerTwoPoint == 2) {
                 $this->playerTwoResult = "Thirty";
@@ -95,22 +100,20 @@ class TennisGame2 implements TennisGame
             $score = "{$this->playerOneResult}-{$this->playerTwoResult}";
         }
 
-        $isPlayerOneAdvantage = $this->playerOnePoint > $this->playerTwoPoint && $this->playerTwoPoint >= 3;
         if ($isPlayerOneAdvantage) {
             $score = "Advantage player1";
         }
 
-        $isPlayerTwoAdvantage = $this->playerTwoPoint > $this->playerOnePoint && $this->playerOnePoint >= 3;
+
         if ($isPlayerTwoAdvantage) {
             $score = "Advantage player2";
         }
 
-        $isPlayerOneWin = $this->playerOnePoint >= 4 && $this->playerTwoPoint >= 0 && ($this->playerOnePoint - $this->playerTwoPoint) >= 2;
         if ($isPlayerOneWin) {
             $score = "Win for player1";
         }
 
-        $isPlayerTwoWin = $this->playerTwoPoint >= 4 && $this->playerOnePoint >= 0 && ($this->playerTwoPoint - $this->playerOnePoint) >= 2;
+
         if ($isPlayerTwoWin) {
             $score = "Win for player2";
         }
