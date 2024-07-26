@@ -44,21 +44,21 @@ class TennisGame2 implements TennisGame
             $score = "Advantage player2";
         }
 
+        if ($isPlayerOneWin) {
+            return "Win for player1";
+        }
 
+
+        if ($isPlayerTwoWin) {
+            return "Win for player2";
+        }
         if ($this->playerHasPointsAndTheOtherDoesnt($this->playerOneName) || $this->playerHasPointsAndTheOtherDoesnt($this->playerTwoName) || $this->isPlayerWinning($this->playerOneName) || $this->isPlayerWinning($this->playerTwoName)) {
             $this->playerOneResult = $this->getScoreType($this->playerOnePoint);
             $this->playerTwoResult = $this->getScoreType($this->playerTwoPoint);
             $score = "{$this->playerOneResult}-{$this->playerTwoResult}";
         }
 
-        if ($isPlayerOneWin) {
-            $score = "Win for player1";
-        }
 
-
-        if ($isPlayerTwoWin) {
-            $score = "Win for player2";
-        }
 
         return $score;
     }
