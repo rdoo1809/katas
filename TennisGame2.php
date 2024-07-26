@@ -22,7 +22,7 @@ class TennisGame2 implements TennisGame
         $scoreIsTied = ($this->playerOnePoint == $this->playerTwoPoint) && $this->playerOnePoint < 4;
         $scoreIsDeuce = $this->playerOnePoint == $this->playerTwoPoint && $this->playerOnePoint >= 3;
         $playerOneHasPointsPlayerTwoDoesNot = $this->playerHasPointsAndTheOtherDoesnt($this->playerOneName);
-        $playerTwoHasPointsPlayerOneDoesNot = $this->playerTwoPoint > 0 && $this->playerOnePoint == 0;
+        $playerTwoHasPointsPlayerOneDoesNot = $this->playerHasPointsAndTheOtherDoesnt($this->playerTwoName);
 
         $isPlayerOneAdvantage = $this->playerOnePoint > $this->playerTwoPoint && $this->playerTwoPoint >= 3;
         $isPlayerTwoAdvantage = $this->playerTwoPoint > $this->playerOnePoint && $this->playerOnePoint >= 3;
@@ -119,8 +119,13 @@ class TennisGame2 implements TennisGame
     public function playerHasPointsAndTheOtherDoesnt(string $playerName): bool
     {
         if ($playerName === $this->playerOneName) {
-
-        return $this->playerOnePoint > 0 && $this->playerTwoPoint == 0;
+            return $this->playerOnePoint > 0 && $this->playerTwoPoint == 0;
         }
+
+        if ($playerName === $this->playerTwoName) {
+            return $this->playerTwoPoint > 0 && $this->playerOnePoint == 0;
+        }
+
+        return false;
     }
 }
