@@ -33,7 +33,8 @@ class TennisGame2 implements TennisGame
             $score .= "-All";
         }
 
-        if ($this->playerOnePoint == $this->playerTwoPoint && $this->playerOnePoint >= 3) {
+        $scoreIsDeuce = $this->playerOnePoint == $this->playerTwoPoint && $this->playerOnePoint >= 3;
+        if ($scoreIsDeuce) {
             $score = "Deuce";
         }
 
