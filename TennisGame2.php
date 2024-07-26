@@ -103,15 +103,18 @@ class TennisGame2 implements TennisGame
             $score = "{$this->playerOneResult}-{$this->playerTwoResult}";
         }
 
-        if ($this->playerOnePoint > $this->playerTwoPoint && $this->playerTwoPoint >= 3) {
+        $isPlayerOneAdvantage = $this->playerOnePoint > $this->playerTwoPoint && $this->playerTwoPoint >= 3;
+        if ($isPlayerOneAdvantage) {
             $score = "Advantage player1";
         }
 
-        if ($this->playerTwoPoint > $this->playerOnePoint && $this->playerOnePoint >= 3) {
+        $isPlayerTwoAdvantage = $this->playerTwoPoint > $this->playerOnePoint && $this->playerOnePoint >= 3;
+        if ($isPlayerTwoAdvantage) {
             $score = "Advantage player2";
         }
 
-        if ($this->playerOnePoint >= 4 && $this->playerTwoPoint >= 0 && ($this->playerOnePoint - $this->playerTwoPoint) >= 2) {
+        $isPlayerOneWin = $this->playerOnePoint >= 4 && $this->playerTwoPoint >= 0 && ($this->playerOnePoint - $this->playerTwoPoint) >= 2;
+        if ($isPlayerOneWin) {
             $score = "Win for player1";
         }
 
