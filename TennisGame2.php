@@ -41,13 +41,13 @@ class TennisGame2 implements TennisGame
 
         if ($playerOneHasPointsPlayerTwoDoesNot) {
             $this->playerOneResult = $this->getScoreType($score, $this->playerOnePoint);
-            $this->playerTwoResult = "Love";
+            $this->playerTwoResult = $this->getScoreType($score, $this->playerTwoPoint);
             $score = "{$this->playerOneResult}-{$this->playerTwoResult}";
         }
 
         if ($playerTwoHasPointsPlayerOneDoesNot) {
             $this->playerTwoResult = $this->getScoreType($score, $this->playerTwoPoint);
-            $this->playerOneResult = "Love";
+            $this->playerOneResult = $this->getScoreType($score, $this->playerOnePoint);
             $score = "{$this->playerOneResult}-{$this->playerTwoResult}";
         }
 
