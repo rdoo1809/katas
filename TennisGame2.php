@@ -54,7 +54,8 @@ class TennisGame2 implements TennisGame
             $score = "{$this->playerOneResult}-{$this->playerTwoResult}";
         }
 
-        if ($this->playerTwoPoint > 0 && $this->playerOnePoint == 0) {
+        $playerTwoHasPointsPlayerOneDoesNot = $this->playerTwoPoint > 0 && $this->playerOnePoint == 0;
+        if ($playerTwoHasPointsPlayerOneDoesNot) {
             if ($this->playerTwoPoint == 1) {
                 $this->playerTwoResult = "Fifteen";
             }
@@ -68,7 +69,8 @@ class TennisGame2 implements TennisGame
             $score = "{$this->playerOneResult}-{$this->playerTwoResult}";
         }
 
-        if ($this->playerOnePoint > $this->playerTwoPoint && $this->playerOnePoint < 4) {
+        $isPlayerOneWinning = $this->playerOnePoint > $this->playerTwoPoint && $this->playerOnePoint < 4;
+        if ($isPlayerOneWinning) {
             if ($this->playerOnePoint == 2) {
                 $this->playerOneResult = "Thirty";
             }
