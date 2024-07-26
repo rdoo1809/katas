@@ -21,15 +21,7 @@ class TennisGame2 implements TennisGame
         $score = "";
         $scoreIsTied = ($this->playerOnePoint == $this->playerTwoPoint) && $this->playerOnePoint < 4;
         if ($scoreIsTied) {
-            if ($this->playerOnePoint == 0) {
-                $score = "Love";
-            }
-            if ($this->playerOnePoint == 1) {
-                $score = "Fifteen";
-            }
-            if ($this->playerOnePoint == 2) {
-                $score = "Thirty";
-            }
+            $score = $this->getScoreType($score, $this->playerOnePoint);
             $score .= "-All";
         }
 
@@ -134,5 +126,26 @@ class TennisGame2 implements TennisGame
         } else if ($player == $this->playerTwoName) {
             $this->playerTwoPoint++;
         }
+    }
+
+    /**
+     * @param string $score
+     * @return string
+     */
+    public function getScoreType(string $score, int $playerPoint): string
+    {
+        if ($playerPoint == 0) {
+            $score = "Love";
+        }
+        if ($playerPoint == 1) {
+            $score = "Fifteen";
+        }
+        if ($playerPoint == 2) {
+            $score = "Thirty";
+        }
+        if ($playerPoint == 3) {
+            $score = "Forty";
+        }
+        return $score;
     }
 }
