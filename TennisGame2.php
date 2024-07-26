@@ -126,36 +126,13 @@ class TennisGame2 implements TennisGame
         return $score;
     }
 
-    private function SetP1Score($number)
-    {
-        for ($i = 0; $i < $number; $i++) {
-            $this->P1Score();
-        }
-    }
-
-    private function SetP2Score($number)
-    {
-        for ($i = 0; $i < $number; $i++) {
-            $this->P2Score();
-        }
-    }
-
-    private function P1Score()
-    {
-        $this->playerOnePoint++;
-    }
-
-    private function P2Score()
-    {
-        $this->playerTwoPoint++;
-    }
 
     public function wonPoint($player)
     {
         if ($player == "player1") {
-            $this->P1Score();
+            $this->playerOnePoint++;
         } else {
-            $this->P2Score();
+            $this->playerTwoPoint++;
         }
     }
 }
