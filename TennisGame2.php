@@ -40,6 +40,7 @@ class TennisGame2 implements TennisGame
         }
 
         if ($playerOneHasPointsPlayerTwoDoesNot) {
+            $this->playerOneResult = $this->getScoreType($score, $this->playerOnePoint);
             if ($this->playerOnePoint == 1) {
                 $this->playerOneResult = "Fifteen";
             }
