@@ -19,7 +19,8 @@ class TennisGame2 implements TennisGame
     public function getScore()
     {
         $score = "";
-        if ($this->playerOnePoint == $this->playerTwoPoint && $this->playerOnePoint < 4) {
+        $scoreIsTied = ($this->playerOnePoint == $this->playerTwoPoint) && $this->playerOnePoint < 4;
+        if ($scoreIsTied) {
             if ($this->playerOnePoint == 0) {
                 $score = "Love";
             }
