@@ -46,19 +46,7 @@ class TennisGame2 implements TennisGame
         }
 
         if ($playerTwoHasPointsPlayerOneDoesNot) {
-
             $this->playerTwoResult = $this->getScoreType($score, $this->playerTwoPoint);
-            $this->playerOneResult = "Love";
-
-            if ($this->playerTwoPoint == 1) {
-                $this->playerTwoResult = "Fifteen";
-            }
-            if ($this->playerTwoPoint == 2) {
-                $this->playerTwoResult = "Thirty";
-            }
-            if ($this->playerTwoPoint == 3) {
-                $this->playerTwoResult = "Forty";
-            }
             $this->playerOneResult = "Love";
             $score = "{$this->playerOneResult}-{$this->playerTwoResult}";
         }
