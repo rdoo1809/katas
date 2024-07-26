@@ -38,7 +38,8 @@ class TennisGame2 implements TennisGame
             $score = "Deuce";
         }
 
-        if ($this->playerOnePoint > 0 && $this->playerTwoPoint == 0) {
+        $playerOneHasPointsPlayerTwoDoesNot = $this->playerOnePoint > 0 && $this->playerTwoPoint == 0;
+        if ($playerOneHasPointsPlayerTwoDoesNot) {
             if ($this->playerOnePoint == 1) {
                 $this->playerOneResult = "Fifteen";
             }
