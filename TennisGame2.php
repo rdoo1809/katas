@@ -56,6 +56,8 @@ class TennisGame2 implements TennisGame
         return "{$this->playerOneResult}-{$this->playerTwoResult}";
     }
 
+
+
     public function wonPoint($player) : void
     {
         if ($player == $this->playerOneName) {
