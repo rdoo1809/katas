@@ -65,9 +65,6 @@ class TennisGame2 implements TennisGame
         }
     }
 
-    /**
-     * @return string
-     */
     public function getScoreType(int $playerPoint): string
     {
         if ($playerPoint == 0) {
@@ -85,36 +82,26 @@ class TennisGame2 implements TennisGame
         return '';
     }
 
-    /**
-     * @return bool
-     */
-    public function isPlayerWinning($player): bool
-    {
-        if ($player == $this->playerOneName) {
-            $isPlayerWinning = $this->playerOnePoint > $this->playerTwoPoint && $this->playerOnePoint < 4;
-        }
-
-        if ($player == $this->playerTwoName) {
-            $isPlayerWinning = $this->playerTwoPoint > $this->playerOnePoint && $this->playerTwoPoint < 4;
-        }
-
-        return $isPlayerWinning;
-    }
-
-    /**
-     * @param string $playerName
-     * @return bool
-     */
-    public function playerHasPointsAndTheOtherDoesnt(string $playerName): bool
-    {
-        if ($playerName === $this->playerOneName) {
-            return $this->playerOnePoint > 0 && $this->playerTwoPoint == 0;
-        }
-
-        if ($playerName === $this->playerTwoName) {
-            return $this->playerTwoPoint > 0 && $this->playerOnePoint == 0;
-        }
-
-        return false;
-    }
+//    public function isPlayerWinning($player): bool
+//    {
+//        if ($player == $this->playerOneName) {
+//            $isPlayerWinning = $this->playerOnePoint > $this->playerTwoPoint && $this->playerOnePoint < 4;
+//        }
+//
+//        if ($player == $this->playerTwoName) {
+//            $isPlayerWinning = $this->playerTwoPoint > $this->playerOnePoint && $this->playerTwoPoint < 4;
+//        }
+//
+//        return $isPlayerWinning;
+//
+//    public function playerHasPointsAndTheOtherDoesnt(string $playerName): bool
+//    {
+//        if ($playerName === $this->playerOneName) {
+//            return $this->playerOnePoint > 0 && $this->playerTwoPoint == 0;
+//        }
+//        if ($playerName === $this->playerTwoName) {
+//            return $this->playerTwoPoint > 0 && $this->playerOnePoint == 0;
+//        }
+//        return false;
+//    }
 }
