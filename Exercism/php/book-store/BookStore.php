@@ -31,7 +31,7 @@ function total(array $items): float
     if ($length > 10) {
         return priceForThreeBundles($items);
     }
-
+//test commit
     if ($length <= 1) {
         $result = 8 * $length;
     } else {
