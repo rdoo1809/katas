@@ -24,17 +24,11 @@ class TennisGame2 implements TennisGame
         $isPlayerOneWin = $this->playerOnePoint >= 4 && $this->playerTwoPoint >= 0 && ($this->playerOnePoint - $this->playerTwoPoint) >= 2;
         $isPlayerTwoWin = $this->playerTwoPoint >= 4 && $this->playerOnePoint >= 0 && ($this->playerTwoPoint - $this->playerOnePoint) >= 2;
 
-        if ($isPlayerOneWin) {
-            return "Win for player1";
-        }
-
-        if ($isPlayerTwoWin) {
-            return "Win for player2";
-        }
-
-        if ($scoreIsDeuce) {
-            return "Deuce";
-        }
+        if ($isPlayerOneWin) return "Win for player1";
+        if ($isPlayerTwoWin) return "Win for player2";
+        if ($scoreIsDeuce) return "Deuce";
+        if ($isPlayerOneAdvantage) return "Advantage player1";
+        if ($isPlayerTwoAdvantage) return "Advantage player2";
 
         if ($scoreIsTied) {
             $score = $this->getScoreType($this->playerOnePoint);
@@ -42,23 +36,13 @@ class TennisGame2 implements TennisGame
             return $score;
         }
 
-        if ($isPlayerOneAdvantage) {
-            return "Advantage player1";
-        }
-
-        if ($isPlayerTwoAdvantage) {
-            return "Advantage player2";
-        }
-
-
         $this->playerOneResult = $this->getScoreType($this->playerOnePoint);
         $this->playerTwoResult = $this->getScoreType($this->playerTwoPoint);
         return "{$this->playerOneResult}-{$this->playerTwoResult}";
     }
 
 
-
-    public function wonPoint($player) : void
+    public function wonPoint($player): void
     {
         if ($player == $this->playerOneName) {
             $this->playerOnePoint++;
@@ -83,27 +67,4 @@ class TennisGame2 implements TennisGame
         }
         return '';
     }
-
-//    public function isPlayerWinning($player): bool
-//    {
-//        if ($player == $this->playerOneName) {
-//            $isPlayerWinning = $this->playerOnePoint > $this->playerTwoPoint && $this->playerOnePoint < 4;
-//        }
-//
-//        if ($player == $this->playerTwoName) {
-//            $isPlayerWinning = $this->playerTwoPoint > $this->playerOnePoint && $this->playerTwoPoint < 4;
-//        }
-//
-//        return $isPlayerWinning;
-//
-//    public function playerHasPointsAndTheOtherDoesnt(string $playerName): bool
-//    {
-//        if ($playerName === $this->playerOneName) {
-//            return $this->playerOnePoint > 0 && $this->playerTwoPoint == 0;
-//        }
-//        if ($playerName === $this->playerTwoName) {
-//            return $this->playerTwoPoint > 0 && $this->playerOnePoint == 0;
-//        }
-//        return false;
-//    }
 }
